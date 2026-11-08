@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+"""Place the selected floating window in half of its own monitor's usable area."""
+import json, math, re, subprocess, sys
+if len(sys.argv)!=3 or not re.fullmatch(r'0x[0-9a-fA-F]+',sys.argv[1]) or sys.argv[2] not in ('left','right'):
+    raise SystemExit('usage: omarchy-window-half 0xADDRESS left|right')
+def query(name):
+    return json.loads(subprocess.check_output(['hyprctl',name,'-j'],text=True))
+address,side=sys.argv[1:]
+window=next((w for w in query('clients') if w['address'].lower()==address.lower()),None)
+if not window or not window.get('floating') or 'omarchy-floating-workspace' not in window.get('tags', []): raise SystemExit('Floating window not found')
+monitor=next((m for m in query('monitors') if m['id']==window['monitor']),None)
+if not monitor: raise SystemExit('Monitor not found')
+w,h=monitor['width'],monitor['height']
+if monitor['transform'] in (1,3,5,7): w,h=h,w
+w,h=round(w/monitor['scale']),round(h/monitor['scale'])
+left,top,right,bottom=monitor['reserved']
+usable_w=w-left-right; usable_h=h-top-bottom
+half=usable_w//2
+# Hyprland reports the client area; the titlebar and border extend above it.
+def option(name, default):
+    try:
+        data=json.loads(subprocess.check_output(['hyprctl','getoption',name,'-j'],text=True))
+        return max(0,int(data.get('int',default)))
+    except (subprocess.SubprocessError,ValueError,TypeError):
+        return default
+title_height=option('plugin:hyprbars:bar_height',30)
+border=option('general:border_size',2)
+x=monitor['x']+left+(half if side=='right' else 0)+border
+y=monitor['y']+top+title_height+border
+width=(usable_w-half if side=='right' else half)-2*border
+height=usable_h-title_height-2*border
+selector='address:'+address
+for expr in (f'hl.dsp.window.fullscreen({{ window = "{selector}", mode = "maximized", action = "unset" }})', f'hl.dsp.window.resize({{ window = "{selector}", x = {width}, y = {height} }})', f'hl.dsp.window.move({{ window = "{selector}", x = {x}, y = {y} }})'):
+    subprocess.run(['hyprctl','dispatch',expr],check=True,stdout=subprocess.DEVNULL)
