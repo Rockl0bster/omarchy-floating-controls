@@ -7,6 +7,9 @@ No keyboard shortcuts are installed or changed.
 
 - Filled ◀ / ▶ symbols, with colors inherited from the current theme.
 - Move the clicked window without following it, including to empty workspaces.
+- Apps that enforce a minimum width may occupy more than half the screen. The
+  requested outer edge is preserved after resizing; an app wider than the entire
+  usable screen cannot be made to fit by this extension.
 - Half-screen placement respects the top bar, titlebar, borders, rotation and scaling.
 - Actions are restricted to windows tagged by Omarchy’s floating workspace mode.
 
