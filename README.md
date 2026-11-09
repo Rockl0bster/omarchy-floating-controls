@@ -17,7 +17,7 @@ No keyboard shortcuts are installed or changed.
 
 ## Requirements and limits
 
-Initial release targets Omarchy’s Lua configuration and native
+Version 1.0 targets Omarchy’s Lua configuration and native
 `omarchy-hyprland-titlebars` package. Python 3 and `hyprctl` are required.
 Workspace navigation currently supports Omarchy’s standard ten-slot monitor banks;
 it reads the current monitor mapping, including `XDG_STATE_HOME`. Custom workspace
@@ -28,7 +28,7 @@ change that plugin’s settings. Special workspaces and guest workspaces outside
 monitor’s bank are excluded. Other titlebar extensions may conflict.
 
 This is a Lua/configuration extension, not a Quickshell bar widget. Direct
-`omarchy plugin add` integration is not provided in this initial release.
+`omarchy plugin add` integration is not provided in this release.
 The integration wraps native button registration and therefore depends on
 Omarchy’s titlebar API and loading order. Updates require compatibility checks.
 
@@ -49,8 +49,8 @@ Floating Controls currently does not override these constraints. After resizing,
 it uses the accepted window width to anchor the window to the requested outer
 screen edge. A window wider than half the screen therefore extends into the
 other half rather than past the screen edge. A window wider than the entire
-usable screen still cannot fit. This behavior is in `main` after the original
-`v0.9` beta tag; update from `main` to get the edge-placement fix.
+usable screen still cannot fit. This edge-placement behavior is included in
+version 1.0.
 
 ## Install
 
