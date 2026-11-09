@@ -5,8 +5,7 @@ Adds previous/next workspace and left/right half-screen buttons to Omarchy’s
 native titlebars. Existing minimize, maximize and close controls remain.
 No keyboard shortcuts are installed or changed.
 
-<img width="823" height="232" alt="image" src="https://github.com/user-attachments/assets/ef780350-30be-4ee2-9b13-e81ff7479177" />
-
+![Floating workspace titlebar controls](preview.png)
 
 - Filled ◀ / ▶ symbols, with colors inherited from the current theme.
 - Move the clicked window without following it, including to empty workspaces.
@@ -17,7 +16,7 @@ No keyboard shortcuts are installed or changed.
 
 ## Requirements and limits
 
-Version 1.0 targets Omarchy’s Lua configuration and native
+This release targets Omarchy’s Lua configuration and native
 `omarchy-hyprland-titlebars` package. Python 3 and `hyprctl` are required.
 Workspace navigation currently supports Omarchy’s standard ten-slot monitor banks;
 it reads the current monitor mapping, including `XDG_STATE_HOME`. Custom workspace
@@ -27,10 +26,14 @@ Compact-workspaces may renumber a workspace after a move; this extension does no
 change that plugin’s settings. Special workspaces and guest workspaces outside the
 monitor’s bank are excluded. Other titlebar extensions may conflict.
 
-This is a Lua/configuration extension, not a Quickshell bar widget. Direct
-`omarchy plugin add` integration is not provided in this release.
-The integration wraps native button registration and therefore depends on
+The shell plugin provides a setup panel; the titlebar controls themselves are
+a Hyprland Lua integration. The integration wraps native button registration and therefore depends on
 Omarchy’s titlebar API and loading order. Updates require compatibility checks.
+
+On monitors with different scale factors, the native titlebar plugin can change
+button glyph sizes when another floating window is created or resized. This was
+reproduced with scales 1.0 and 1.5 and is tracked in
+[omarchy-hyprland-titlebars #18](https://github.com/omacom/omarchy-hyprland-titlebars/issues/18).
 
 ### Minimum width in floating mode
 
@@ -52,7 +55,31 @@ other half rather than past the screen edge. A window wider than the entire
 usable screen still cannot fit. This edge-placement behavior is included in
 version 1.0.
 
-## Install
+## Install from Omarchy
+
+```sh
+omarchy plugin add https://github.com/Rockl0bster/omarchy-floating-controls.git --enable
+```
+
+Open **Floating Controls** in the bar or tray, read the explanation, and choose
+**Install titlebar controls**. Choose both button sets, workspace arrows only,
+left/right half-screen buttons only, or no customization (the original buttons).
+No customization keeps the integration installed so it can be enabled again;
+uninstall removes the Hyprland integration. To change an installed setup, select
+another option and choose **Apply selection**. Installing the shell plugin alone does not modify
+Hyprland configuration. The button copies the runtime files to
+`~/.local/share/omarchy-floating-controls`, adds a Lua module link and one
+`require` in `~/.config/hypr/hyprland.lua`, creates a backup of that file,
+reloads Hyprland and checks for configuration errors. A conflicting personal
+titlebar customization is not replaced automatically.
+
+To remove the integration, open the panel and choose **Uninstall integration**
+first, then run `omarchy plugin remove io.github.rockl0bster.floating-controls`.
+Removing only the shell plugin leaves the separately installed titlebar
+integration in place; re-add the plugin and use its remove button, or use the
+manual uninstall command below. The runtime copy and backups are retained.
+
+## Manual install
 
 ```sh
 git clone https://github.com/Rockl0bster/omarchy-floating-controls.git
@@ -60,13 +87,16 @@ cd omarchy-floating-controls
 python3 manage.py install
 ```
 
-No sudo. Installation copies runtime files to `~/.local/share/omarchy-floating-controls`,
+No sudo. Both installation methods copy runtime files to `~/.local/share/omarchy-floating-controls`,
 links a Lua module under `~/.config/hypr`, backs up `hyprland.lua`, and inserts one
 require before the Omarchy toggles import. Installation can be repeated.
 The author's previous personal setup can be migrated with `--migrate-personal`;
 its original files remain available but its require is removed to avoid duplicate buttons.
 
-## Update / remove
+Manual selection: `python3 manage.py install --mode both`, `--mode workspace`,
+`--mode halves`, or `--mode none`. An update without `--mode` preserves the saved selection.
+
+## Manual update / remove
 
 ```sh
 git pull --ff-only

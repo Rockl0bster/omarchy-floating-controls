@@ -1,0 +1,16 @@
+{
+  "title": "Floating Controls",
+  "explanation": "Bruk valget tar sikkerhetskopi og oppdaterer Hyprland-konfigurasjonen. Avinstaller integrasjonen her før du fjerner pluginen.",
+  "active": "Tittellinjekontrollene er installert.",
+  "inactive": "Tittellinjekontrollene er ikke installert.",
+  "install": "Installer tittellinjekontroller",
+  "remove": "Avinstaller integrasjonen",
+  "done": "Ferdig. Hyprland-konfigurasjonen er kontrollert.",
+  "failed": "Handlingen kunne ikke fullføres:",
+  "mode_both": "Begge knappesettene",
+  "mode_workspace": "Bare arbeidsområdepiler",
+  "mode_halves": "Bare venstre/høyre skjermhalvdel",
+  "apply": "Bruk valget",
+  "preview": "Forhåndsvisning",
+  "mode_none": "Ingen tilpasning"
+}

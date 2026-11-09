@@ -1,0 +1,16 @@
+{
+  "title": "Floating Controls",
+  "explanation": "Apply selection backs up and updates Hyprland configuration. Uninstall the integration here before removing the plugin.",
+  "active": "Titlebar controls are installed.",
+  "inactive": "Titlebar controls are not installed.",
+  "install": "Install titlebar controls",
+  "remove": "Uninstall integration",
+  "done": "Done. Hyprland configuration was checked.",
+  "failed": "Could not complete the operation:",
+  "mode_both": "Both button sets",
+  "mode_workspace": "Workspace arrows only",
+  "mode_halves": "Left/right half-screen buttons only",
+  "apply": "Apply selection",
+  "preview": "Preview",
+  "mode_none": "No customization"
+}

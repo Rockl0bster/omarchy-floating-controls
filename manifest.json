@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.rockl0bster.floating-controls",
+  "name": "Floating Controls",
+  "version": "1.1.0",
+  "author": "Rockl0bster",
+  "description": "Add workspace and half-screen controls to floating window titlebars.",
+  "kinds": ["bar-widget"],
+  "entryPoints": { "barWidget": "Panel.qml" },
+  "barWidget": {
+    "displayName": "Floating Controls",
+    "description": "Set up or remove floating window titlebar controls.",
+    "category": "System",
+    "allowMultiple": false,
+    "defaultSection": "right"
+  }
+}
