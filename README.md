@@ -5,7 +5,8 @@ Adds previous/next workspace and left/right half-screen buttons to Omarchy’s
 native titlebars. Existing minimize, maximize and close controls remain.
 No keyboard shortcuts are installed or changed.
 
-<!-- Paste the screenshot here. -->
+<img width="823" height="232" alt="image" src="https://github.com/user-attachments/assets/ef780350-30be-4ee2-9b13-e81ff7479177" />
+
 
 - Filled ◀ / ▶ symbols, with colors inherited from the current theme.
 - Move the clicked window without following it, including to empty workspaces.
