@@ -98,15 +98,17 @@ Manual selection: `python3 manage.py install --mode both`, `--mode workspace`,
 
 ### Ask a coding agent
 
-You can also ask your coding agent to install the titlebar integration for you.
+You can also ask your coding agent to create a similar setup for you.
 For example, copy this prompt:
 
 ```text
-Install Omarchy Floating Controls from https://github.com/Rockl0bster/omarchy-floating-controls.
-Follow the repository's manual installation instructions, enabling both workspace
-arrows and half-screen buttons. Check the requirements and existing configuration,
-keep a backup, and verify the Hyprland configuration after installation. Do not
-overwrite conflicting personal titlebar customizations.
+In Omarchy's floating workspace mode, add titlebar buttons that move the clicked
+window to the previous or next workspace without following it, plus buttons that
+place the window on the left or right half of the screen. Keep the existing
+minimize, maximize, and close buttons, and do not change keyboard shortcuts.
+Respect monitor scaling, screen edges, and the bar. Check my existing setup,
+back up any configuration you change, and verify Hyprland after applying it.
+Do not overwrite conflicting personal customizations.
 ```
 
 Use this prompt at your own risk.
