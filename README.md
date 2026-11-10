@@ -96,6 +96,21 @@ its original files remain available but its require is removed to avoid duplicat
 Manual selection: `python3 manage.py install --mode both`, `--mode workspace`,
 `--mode halves`, or `--mode none`. An update without `--mode` preserves the saved selection.
 
+### Ask a coding agent
+
+You can also ask your coding agent to install the titlebar integration for you.
+For example, copy this prompt:
+
+```text
+Install Omarchy Floating Controls from https://github.com/Rockl0bster/omarchy-floating-controls.
+Follow the repository's manual installation instructions, enabling both workspace
+arrows and half-screen buttons. Check the requirements and existing configuration,
+keep a backup, and verify the Hyprland configuration after installation. Do not
+overwrite conflicting personal titlebar customizations.
+```
+
+Use this prompt at your own risk.
+
 ## Manual update / remove
 
 ```sh
