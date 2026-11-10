@@ -112,6 +112,8 @@ Do not overwrite conflicting personal customizations.
 ```
 
 Use this prompt at your own risk.
+Creating a similar setup with a coding agent will likely use more tokens than
+installing this repository and may therefore cost more.
 
 ## Manual update / remove
 
