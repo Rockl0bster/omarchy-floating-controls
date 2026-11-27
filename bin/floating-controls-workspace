@@ -23,9 +23,13 @@ def main():
     monitor = next((m for m in query("monitors") if m.get("id") == client.get("monitor")), None)
     if not monitor or workspace <= 0:
         return 1
-    state = Path(os.environ.get("XDG_STATE_HOME", str(Path.home() / ".local/state"))) / "omarchy/monitor-workspaces"
+    state_dir = Path(os.environ.get("XDG_STATE_HOME") or Path.home() / ".local/state") / "omarchy"
+    try:
+        mapping = (state_dir / "monitors/workspaces").read_text()
+    except FileNotFoundError:
+        mapping = (state_dir / "monitor-workspaces").read_text()
     block = None
-    for line in state.read_text().splitlines():
+    for line in mapping.splitlines():
         fields = line.split("\t")
         if len(fields) >= 2 and fields[1] == monitor["name"] and fields[0].isdigit():
             block = int(fields[0])
